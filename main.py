@@ -1,39 +1,40 @@
-def riemann_method(function, a, b, n):
+def riemann_integral_approximation(f, start, end, num_subsections):
   """
-  Calculates an approximation to the integral of a function f in a section [a, b] using the Riemann method with n subsections.
+  Calculates an approximation to the integral of a function f over the interval [start, end] using the Riemann method with num_subsections subsections.
 
   Arguments:
-    f: continuous function derivable.
-    A: The beginning of the integration section.
-    B: End of the integration section.
-    n: number of subsections.
+    f: The function to integrate. It should be a continuous and differentiable function.
+    start: The start point of the integration interval.
+    end: The end point of the integration interval.
+    num_subsections: The number of subsections to divide the interval into.
 
   Returns:
     Approximation to the integral.
   """
 
-  if n <= 0:
-    raise ValueError("The number of subsections n should be positive")
+  if num_subsections <= 0:
+    raise ValueError("The number of subsections should be positive")
 
-  # Calculate the size of each subsection.
-  dx = (b - a) / n
+  # Calculate the width of each subsection.
+  delta_x = (end - start) / num_subsections
 
   # Sum of the areas of the rectangles.
   sum_areas = 0
-  for i in range(n):
-    x_i = a + i * dx
-    sum_areas += function(x_i) * dx
+  for i in range(num_subsections):
+    x_i = start + i * delta_x
+    sum_areas += f(x_i) * delta_x
 
   return sum_areas
 
-#example
+# Example
 
-def function(x):
+def square_function(x):
+  """Defines the function f(x) = x^2."""
   return x**2
 
-a = 0
-b = 1
-n = 4
+start_point = 0
+end_point = 1
+num_subsections = 4000
 
-integral_sulotion = riemann_method(function, a, b, n)
-print("Approximation to the integral of x^2 in the section [0, 1] using the Reimann method with 4 subsections:", integral_sulotion)
+integral_approximation = riemann_integral_approximation(square_function, start_point, end_point, num_subsections)
+print("Approximation to the integral of x^2 over the interval [0, 1] using the Riemann method with 4000 subsections:", integral_approximation)
