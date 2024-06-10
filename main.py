@@ -34,7 +34,7 @@ def square_function(x):
 
 start_point = 0
 end_point = 1
-num_subsections = 4000
+num_subsections = 4
 
 integral_approximation = riemann_integral_approximation(square_function, start_point, end_point, num_subsections)
 print("Approximation to the integral of x^2 over the interval [0, 1] using the Riemann method with 4000 subsections:", integral_approximation)
